@@ -25,6 +25,13 @@ defmodule LocalTime do
   end
 
   @doc """
+  Returns the current time in the local time zone.
+  """
+  def unix_now do
+    now() |> DateTime.to_unix()
+  end
+
+  @doc """
   Converts a unix timestamp to a DateTime in the local time zone.
   """
   def from_unix(time) do
