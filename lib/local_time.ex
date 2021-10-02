@@ -25,7 +25,8 @@ defmodule LocalTime do
   end
 
   @doc """
-  Returns the current time in the local time zone.
+  Returns the number of seconds since 1970. Note that a UNIX time
+  is always UTC, so this doesn't change that.
   """
   def unix_now do
     now() |> DateTime.to_unix()
