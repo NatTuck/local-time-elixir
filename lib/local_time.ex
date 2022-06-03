@@ -48,6 +48,16 @@ defmodule LocalTime do
   end
 
   @doc """
+  Converts anything to local DateTime or raises.
+  """
+  def from!(thing) do
+    case from(thing) do
+      {:ok, dt} -> dt
+      {:error, msg} -> raise msg
+    end
+  end
+
+  @doc """
   Converts anything to local DateTime.
   """
   def from(%NaiveDateTime{} = ndt) do

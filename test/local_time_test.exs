@@ -15,4 +15,10 @@ defmodule LocalTimeTest do
     assert dt.year == 2000
     assert dt.hour == 3
   end
+
+  test "from! unix" do
+    dt = LocalTime.from!(0)
+    assert dt.time_zone == "America/New_York"
+    assert dt.year == 1969
+  end
 end
