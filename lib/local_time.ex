@@ -48,6 +48,26 @@ defmodule LocalTime do
   end
 
   @doc """
+  Converts anything to local DateTime.
+  """
+  def from(%NaiveDateTime{} = ndt) do
+    from_native(ndt)
+  end
+
+  def from(%DateTime{} = dt) do
+    DateTime.shift_zone(dt, time_zone())
+  end
+
+  def from(time) when is_integer(time) do
+    from_unix(time)
+  end
+
+  def from(text) when is_binary(text) do
+    DateTime.from_iso8601(text)
+    |> from()
+  end
+
+  @doc """
   Converts a Date and Time to a DateTime in the local time zone.
   """
   def new(date, time) do
