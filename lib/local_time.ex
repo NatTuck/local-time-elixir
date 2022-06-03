@@ -51,7 +51,7 @@ defmodule LocalTime do
   Converts anything to local DateTime.
   """
   def from(%NaiveDateTime{} = ndt) do
-    from_native(ndt)
+    DateTime.from_naive(ndt, time_zone())
   end
 
   def from(%DateTime{} = dt) do
@@ -59,7 +59,12 @@ defmodule LocalTime do
   end
 
   def from(time) when is_integer(time) do
-    from_unix(time)
+    with {:ok, dt} <- DateTime.from_unix(time)
+    do
+      from(dt)
+    else
+      err -> err
+    end
   end
 
   def from(text) when is_binary(text) do
