@@ -41,10 +41,18 @@ defmodule LocalTime do
   end
 
   @doc """
-  Converts a NaiveDateTime to a DateTime in the local time zone.
+  Converts a Local NaiveDateTime to a DateTime in the local time zone.
   """
   def from_naive(ndt) do
     DateTime.from_naive!(ndt, time_zone())
+  end
+
+  @doc """
+  Converts a UTC NaiveDateTime to a DateTime in the local time zone.
+  """
+  def from_naive_utc(ndt) do
+    DateTime.from_naive!(ndt, "Etc/UTC")
+    |> from!()
   end
 
   @doc """
