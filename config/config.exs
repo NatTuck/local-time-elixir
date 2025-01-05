@@ -1,6 +1,6 @@
 
 # This doesn't apply when used as library.
-use Mix.Config
+import Config
 
 config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 
